@@ -1,8 +1,11 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../Providers/AuthProviders";
 
 const Register = () => {
-  const [error, setError] = useState("")
+  const [error, setError] = useState("");
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const navigate = useNavigate()
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -12,9 +15,12 @@ const Register = () => {
     const password = form.password.value;
     const confirmPassword = form.confirmPassword.value;
     const photoURL = form.photo.value;
-    setError("")
-    if(password !== confirmPassword){
-      return setError("Password did not matched")
+    setError("");
+    if (password !== confirmPassword) {
+      return setError("Password did not matched");
+    }
+    if (password.length < 6) {
+      return setError("Password should at least 6 characters long");
     }
     const newUser = {
       name,
@@ -23,7 +29,20 @@ const Register = () => {
       confirmPassword,
       photoURL,
     };
-    console.log(newUser);
+
+    createUser(email, password)
+      .then(() => {
+        updateUserProfile(name, photoURL)
+          .then(() => {
+            navigate("/")
+          })
+          .catch((error) => {
+            setError(error.message);
+          });
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
   };
   return (
     <div className="hero min-h-screen bg-base-200">
@@ -92,7 +111,7 @@ const Register = () => {
               </div>
             </div>
             {/* error */}
-            <p>{error}</p>
+            <p className="text-red-600 ">{error}</p>
             {/* photo URL */}
             <div className="form-control relative">
               <label className="label">

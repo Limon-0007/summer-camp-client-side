@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../Providers/AuthProviders";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+  const { signIn } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -15,7 +22,20 @@ const Login = () => {
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    signIn(email, password)
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Logged in Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate(from, { replace: true });
+        setError("");
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
   };
 
   return (
@@ -65,6 +85,10 @@ const Login = () => {
                   Forgot password?
                 </a>
               </label>
+              {/* error */}
+              <p className="text-red-600">
+                <small>{error}</small>
+              </p>
             </div>
             <div className="form-control mt-6">
               <button type="submit" className="btn btn-primary">

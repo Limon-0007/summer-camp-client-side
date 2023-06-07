@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Providers/AuthProviders";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
-  const user = false;
+  const { user, logOut } = useContext(AuthContext);
+
   const navItems = (
     <>
       <li>
@@ -21,6 +24,34 @@ const Navbar = () => {
       )}
     </>
   );
+
+  const handleSignOut = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You want to sign out?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Logout!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        logOut()
+          .then(() => {
+            Swal.fire({
+              icon: 'success',
+              title: 'Log out Successfully!',
+              showConfirmButton: false,
+              timer: 1000
+            });
+          })
+          .catch((error) => {
+            console.log(error.message);
+          });
+      }
+    });
+  };
+
   return (
     <div className="navbar font-semibold fixed z-10 bg-opacity-30 bg-black md:text-white md:py-5 py-2 md:px-8 px-4">
       <div className="navbar-start">
@@ -60,15 +91,14 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         {!user ? (
-          <Link to="/login" className="btn btn-outline text-white">Login</Link>
+          <Link to="/login" className="btn btn-outline text-white">
+            Login
+          </Link>
         ) : (
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                <img
-                  src="https://media-cldnry.s-nbcnews.com/image/upload/rockcms/2022-10/girl-names-that-start-with-c-zz-221027-768b76.jpg"
-                  alt="Image not found"
-                />
+                <img src={user?.photoURL} alt="Image not found" />
               </div>
             </label>
             <ul
@@ -84,8 +114,8 @@ const Navbar = () => {
               <li>
                 <a>Settings</a>
               </li>
-              <li>
-                <a>Logout</a>
+              <li onClick={handleSignOut}>
+                <Link>Logout</Link>
               </li>
             </ul>
           </div>
