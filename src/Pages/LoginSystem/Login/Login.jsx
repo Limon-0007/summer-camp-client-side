@@ -8,7 +8,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
-  const { signIn } = useContext(AuthContext);
+  const { signIn, googleSignIn } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
@@ -23,6 +23,23 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     signIn(email, password)
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Logged in Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate(from, { replace: true });
+        setError("");
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
+
+  const handleGoogleSignIn = () => {
+    googleSignIn()
       .then(() => {
         Swal.fire({
           icon: "success",
@@ -110,7 +127,7 @@ const Login = () => {
           {/* divider */}
           <div className="divider">or</div>
           <div className="mx-auto pb-6">
-            <button>
+            <button onClick={handleGoogleSignIn}>
               <FaGoogle className="text-2xl"></FaGoogle>
             </button>
           </div>
