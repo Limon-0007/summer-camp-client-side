@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const user = true;
+  const user = false;
   const navItems = (
     <>
       <li>
@@ -60,7 +60,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         {!user ? (
-          <a className="btn">Button</a>
+          <Link to="/login" className="btn btn-outline text-white">Login</Link>
         ) : (
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
