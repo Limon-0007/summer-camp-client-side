@@ -28,7 +28,7 @@ const Login = () => {
           icon: "success",
           title: "Logged in Successfully",
           showConfirmButton: false,
-          timer: 1500,
+          timer: 1000,
         });
         navigate(from, { replace: true });
         setError("");
@@ -45,7 +45,7 @@ const Login = () => {
           icon: "success",
           title: "Logged in Successfully",
           showConfirmButton: false,
-          timer: 1500,
+          timer: 1000,
         });
         navigate(from, { replace: true });
         setError("");
@@ -77,6 +77,7 @@ const Login = () => {
                 name="email"
                 placeholder="email"
                 className="input input-bordered"
+                required
               />
             </div>
             <div className="form-control relative">
@@ -90,6 +91,7 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="password"
                 className="input input-bordered"
+                required
               />
               <span
                 className="absolute right-4 top-12 text-xl cursor-pointer"

@@ -1,11 +1,16 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProviders";
+import { FaGoogle } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const [error, setError] = useState("");
-  const { createUser, updateUserProfile } = useContext(AuthContext);
-  const navigate = useNavigate()
+  const { createUser, updateUserProfile, googleSignIn } =
+    useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -22,6 +27,15 @@ const Register = () => {
     if (password.length < 6) {
       return setError("Password should at least 6 characters long");
     }
+
+    if (!/[A-Z]/.test(password)) {
+      return setError("Password should contain at least one capital letter");
+    }
+
+    if (!/[!@#$%^&*]/.test(password)) {
+      return setError("Password should contain at least one special character");
+    }
+
     const newUser = {
       name,
       email,
@@ -34,7 +48,13 @@ const Register = () => {
       .then(() => {
         updateUserProfile(name, photoURL)
           .then(() => {
-            navigate("/")
+            Swal.fire({
+              icon: "success",
+              title: "Sign up Successfully",
+              showConfirmButton: false,
+              timer: 1000,
+            });
+            navigate(from, { replace: true });
           })
           .catch((error) => {
             setError(error.message);
@@ -44,6 +64,24 @@ const Register = () => {
         setError(error.message);
       });
   };
+
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Logged in Successfully",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+        navigate(from, { replace: true });
+        setError("");
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
+
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row md:px-12 px-4">
@@ -67,6 +105,7 @@ const Register = () => {
                   name="name"
                   placeholder="Username"
                   className="input input-bordered"
+                  required
                 />
               </div>
 
@@ -79,6 +118,7 @@ const Register = () => {
                   name="email"
                   placeholder="email"
                   className="input input-bordered"
+                  required
                 />
               </div>
             </div>
@@ -94,6 +134,7 @@ const Register = () => {
                   name="password"
                   placeholder="password"
                   className="input input-bordered"
+                  required
                 />
               </div>
 
@@ -107,11 +148,12 @@ const Register = () => {
                   name="confirmPassword"
                   placeholder="confirm Password"
                   className="input input-bordered"
+                  required
                 />
               </div>
             </div>
             {/* error */}
-            <p className="text-red-600 ">{error}</p>
+            <p className="text-red-600 "><small>{error}</small></p>
             {/* photo URL */}
             <div className="form-control relative">
               <label className="label">
@@ -122,6 +164,7 @@ const Register = () => {
                 name="photo"
                 placeholder="Photo URL"
                 className="input input-bordered"
+                required
               />
             </div>
 
@@ -142,6 +185,13 @@ const Register = () => {
               </p>
             </div>
           </form>
+          {/* divider */}
+          <div className="divider">or</div>
+          <div className="mx-auto pb-6">
+            <button onClick={handleGoogleSignIn}>
+              <FaGoogle className="text-2xl"></FaGoogle>
+            </button>
+          </div>
         </div>
       </div>
     </div>

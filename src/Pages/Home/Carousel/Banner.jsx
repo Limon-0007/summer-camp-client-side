@@ -1,27 +1,31 @@
 import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import { Pagination } from "swiper";
+import "swiper/css/pagination";
+import BannerCard from "./BannerCard";
 
 const Banner = () => {
   return (
     <>
-    <div
-      className="p-12 text-white bg-cover bg-fixed bg-center flex flex-col justify-center items-center"
-      style={{
-        backgroundImage:
-          'url("https://img.freepik.com/free-photo/virtual-classroom-study-space_23-2149178645.jpg?size=626&ext=jpg&uid=R101288307&ga=GA1.2.311772693.1668666155&semt=country_rows_v1")',
-          height: "90vh"
-      }}
-    >
-      <p className="text-xl font-semibold max-w-3xl py-6">
-        Our language center offers group and personal lessons in English and
-        other modern languages for all ages and levels of knowledge.
-      </p>
-      <h2 className="text-6xl font-bold max-w-3xl text-center">IMPROVE YOUR <span className="font-light">ENGLISH</span> SKILLS</h2>
-      <div className="text-center">
-      <button className="btn btn-outline border-0 border-b-4 mt-8 mx-auto text-white">
-        Enroll Now
-      </button>
-      </div>
-    </div>
+      <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
+        {/* banner 1 */}
+        <SwiperSlide>
+         <BannerCard image="https://img.freepik.com/free-photo/virtual-classroom-study-space_23-2149178645.jpg?size=626&ext=jpg&uid=R101288307&ga=GA1.2.311772693.1668666155&semt=country_rows_v1" texts="ENGLISH"></BannerCard>
+        </SwiperSlide>
+        {/* banner 2 */}
+        <SwiperSlide>
+        <BannerCard image="https://img.freepik.com/free-photo/brainstorm-meeting_1098-15871.jpg?size=626&ext=jpg&uid=R101288307&ga=GA1.2.311772693.1668666155&semt=country_rows_v1" texts="FRENCH"></BannerCard>
+        </SwiperSlide>
+        {/* banner 3 */}
+        <SwiperSlide>
+          <BannerCard image="https://img.freepik.com/premium-photo/day-international-school-teachers-blackboard-books-brazil_488220-712.jpg?size=626&ext=jpg&uid=R101288307&ga=GA1.2.311772693.1668666155&semt=country_rows_v1" texts="ITALIC"></BannerCard>
+        </SwiperSlide>
+        {/* banner 4 */}
+        <SwiperSlide>
+          <BannerCard image="https://img.freepik.com/premium-photo/open-book-with-graduation-hat-light-bulb-education-learning-school-university-idea-concept-3d-illustration_56345-604.jpg?size=626&ext=jpg&uid=R101288307&ga=GA1.2.311772693.1668666155&semt=country_rows_v1" texts="GERMAN"></BannerCard>
+        </SwiperSlide>
+      </Swiper>
     </>
   );
 };
