@@ -42,6 +42,7 @@ const Register = () => {
       password,
       confirmPassword,
       photoURL,
+      role: "student"
     };
 
     createUser(email, password)
@@ -63,6 +64,20 @@ const Register = () => {
       .catch((error) => {
         setError(error.message);
       });
+
+      // send data to server 
+
+      fetch("http://localhost:5000/users", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json"
+        },
+        body: JSON.stringify(newUser)
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+      })
   };
 
   const handleGoogleSignIn = () => {
