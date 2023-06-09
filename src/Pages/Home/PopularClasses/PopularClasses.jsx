@@ -1,5 +1,7 @@
 import React from "react";
 import ClassesCard from "./ClassesCard";
+import { Link } from "react-router-dom";
+import Buttons from "../../../Components/Buttons/Buttons";
 
 const PopularClasses = () => {
  
@@ -10,6 +12,12 @@ const PopularClasses = () => {
       <hr className="border mt-2 w-80 mx-auto" />
       {/* class card */}
       <ClassesCard></ClassesCard>
+      {/* button */}
+      <div className="mt-14 text-center">
+      <Link to="/">
+        <Buttons title="Enroll Now"></Buttons>
+      </Link>
+      </div>
     </div>
   );
 };

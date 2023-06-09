@@ -2,6 +2,7 @@ import React from 'react';
 import Banner from '../Carousel/Banner';
 import PopularClasses from '../PopularClasses/PopularClasses';
 import PopularInstructors from '../PopularInstructors/PopularInstructors';
+import LatestNews from './../LatestNews/LatestNews';
 
 const Home = () => {
     return (
@@ -9,6 +10,7 @@ const Home = () => {
             <Banner></Banner>
             <PopularClasses></PopularClasses>
             <PopularInstructors></PopularInstructors>
+            <LatestNews></LatestNews>
         </div>
     );
 };
