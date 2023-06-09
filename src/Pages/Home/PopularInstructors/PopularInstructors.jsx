@@ -12,7 +12,7 @@ const PopularInstructors = () => {
       <InstructorsCard></InstructorsCard>
       {/* button */}
       <div className="mt-14 text-center">
-      <Link to="/">
+      <Link to="/instructors">
         <Buttons title="Show All"></Buttons>
       </Link>
       </div>

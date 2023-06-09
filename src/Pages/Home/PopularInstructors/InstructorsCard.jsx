@@ -22,7 +22,7 @@ const InstructorsCard = () => {
               />
               <div className="absolute top-0 left-0 w-full h-full opacity-0 hover:opacity-100 transition-opacity duration-500 flex flex-col justify-center items-center bg-black bg-opacity-50 text-white text-center">
                 <Link
-                  to="/"
+                  to={`/instructors/${instructor._id}`}
                   className="bg-white text-black py-2 px-4 rounded font-semibold"
                 >
                   View Details
@@ -41,7 +41,7 @@ const InstructorsCard = () => {
               </p>
             </div>
             <div className="card-actions justify-end">
-              <Link to="/">
+              <Link to={`/instructors/${instructor._id}`}>
                 <Buttons title="View Details"></Buttons>
               </Link>
             </div>

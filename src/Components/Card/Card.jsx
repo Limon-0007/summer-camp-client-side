@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Card = ({ image, title, date, text }) => {
+const Card = ({ image, date, text }) => {
   return (
     <div className="card bg-base-100 shadow-xl">
       <div className="relative overflow-hidden">

@@ -9,11 +9,23 @@ const LatestNews = () => {
       {/* cards */}
       <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 px-6 mt-14">
         {/* card 1 */}
-        <Card image="https://ld-wt73.template-help.com/tf/ispeak/images/grid-blog-1-339x251.jpg" date="May 12, 2023" text="7 Reasons to Study in Class Rather than Study Alone"></Card>
+        <Card
+          image="https://ld-wt73.template-help.com/tf/ispeak/images/grid-blog-1-339x251.jpg"
+          date="May 12, 2023"
+          text="7 Reasons to Study in Class Rather than Study Alone"
+        ></Card>
         {/* card 2 */}
-        <Card image="https://ld-wt73.template-help.com/tf/ispeak/images/grid-blog-2-339x251.jpg" date="January 19, 2023" text="Test of Interactive English: Personal Experience"></Card>
+        <Card
+          image="https://ld-wt73.template-help.com/tf/ispeak/images/grid-blog-2-339x251.jpg"
+          date="January 19, 2023"
+          text="Test of Interactive English: Personal Experience"
+        ></Card>
         {/* card 3 */}
-        <Card image="https://ld-wt73.template-help.com/tf/ispeak/images/grid-blog-3-339x251.jpg" date="October 22, 2023" text="5 Reasons Why You Should Consider Doing the FCE"></Card>
+        <Card
+          image="https://ld-wt73.template-help.com/tf/ispeak/images/grid-blog-3-339x251.jpg"
+          date="October 22, 2023"
+          text="5 Reasons Why You Should Consider Doing the FCE"
+        ></Card>
       </div>
     </div>
   );
