@@ -30,7 +30,12 @@ const Instructors = () => {
             <h2 className="card-title">{instructor.name}</h2>
             <div className="font-semibold text-sm">
               <p>Email: {instructor.email}</p>
-              <p>Class Name: <span className="font-bold text-base">{instructor.class_name}</span></p>
+              <p>
+                Class Name:{" "}
+                <span className="font-bold text-base">
+                  {instructor.class_name}
+                </span>
+              </p>
               <p>Number of students: {instructor.number_of_students}</p>
             </div>
             <div className="card-actions justify-end">

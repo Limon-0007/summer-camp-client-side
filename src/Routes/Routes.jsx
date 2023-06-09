@@ -6,6 +6,7 @@ import Login from "../Pages/LoginSystem/Login/Login";
 import Register from "../Pages/LoginSystem/Register/Register";
 import Instructors from "../Pages/Instructors/Instructors";
 import InstructorDetails from "../Pages/InstructorDetails/InstructorDetails";
+import Classes from "../Pages/Classes/Classes";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
         path: "instructors/:id",
         element: <InstructorDetails></InstructorDetails>,
         loader: ({params}) => fetch(`http://localhost:5000/instructors/${params.id}`)
+      },
+      {
+        path: "classes",
+        element: <Classes></Classes>
       }
     ],
   },
