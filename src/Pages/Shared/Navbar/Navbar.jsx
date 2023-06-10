@@ -1,10 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProviders";
 import Swal from "sweetalert2";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    fetch(
+      `https://summer-camp-server-side-murex.vercel.app/users/${user?.email}`
+    )
+      .then((res) => res.json())
+      .then((data) => setUsers(data));
+  }, [user]);
 
   const navItems = (
     <>
@@ -19,7 +27,13 @@ const Navbar = () => {
       </li>
       {user && (
         <li>
-          <Link to="/dashboard">Dashboard</Link>
+          {users[0]?.role === "admin" ? (
+            <Link to="/dashboard/manageClasses">Dashboard</Link>
+          ) : users[0]?.role === "instructor" ? (
+            <Link to="/dashboard/addAClass">Dashboard</Link>
+          ) : (
+            <Link to="/dashboard/selectedClasses">Dashboard</Link>
+          )}
         </li>
       )}
     </>
@@ -39,10 +53,10 @@ const Navbar = () => {
         logOut()
           .then(() => {
             Swal.fire({
-              icon: 'success',
-              title: 'Log out Successfully!',
+              icon: "success",
+              title: "Log out Successfully!",
               showConfirmButton: false,
-              timer: 1000
+              timer: 1000,
             });
           })
           .catch((error) => {
