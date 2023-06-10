@@ -1,11 +1,11 @@
 import React from "react";
 import Card from "../../../Components/Card/Card";
+import Title from "../../../Components/Title/Title";
 
 const LatestNews = () => {
   return (
     <div className="mt-36 mb-36">
-      <h2 className="text-center font-bold text-4xl">Latest News</h2>
-      <hr className="border mt-2 w-64 mx-auto" />
+      <Title title="Latest News"></Title>
       {/* cards */}
       <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 px-6 mt-14">
         {/* card 1 */}

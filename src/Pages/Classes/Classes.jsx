@@ -3,6 +3,7 @@ import Buttons from "../../Components/Buttons/Buttons";
 import { AuthContext } from "../../Providers/AuthProviders";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import Title from "../../Components/Title/Title";
 
 const Classes = () => {
   const [classes, setClasses] = useState([]);
@@ -38,8 +39,7 @@ const Classes = () => {
   };
   return (
     <div className="py-36 px-8">
-      <h2 className="text-center font-bold text-4xl">Our Classes</h2>
-      <hr className="border mt-2 w-96 mx-auto mb-20" />
+     <Title title="Our Classes"></Title>
       {classes.map((singleClass) => (
         <div
           key={singleClass._id}

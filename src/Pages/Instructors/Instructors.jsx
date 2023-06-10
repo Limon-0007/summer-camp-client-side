@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Buttons from "../../Components/Buttons/Buttons";
 import { Link } from "react-router-dom";
+import Title from "../../Components/Title/Title";
 
 const Instructors = () => {
   const [instructors, setInstructors] = useState([]);
@@ -12,8 +13,7 @@ const Instructors = () => {
   }, []);
   return (
     <div className="py-36 px-8">
-      <h2 className="text-center font-bold text-4xl">Our Instructors</h2>
-      <hr className="border mt-2 w-96 mx-auto mb-20" />
+      <Title title="Our Instructors"></Title>
       {instructors.map((instructor) => (
         <div
           key={instructor._id}

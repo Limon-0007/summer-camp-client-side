@@ -2,12 +2,12 @@ import React from "react";
 import InstructorsCard from "./InstructorsCard";
 import { Link } from "react-router-dom";
 import Buttons from './../../../Components/Buttons/Buttons';
+import Title from "../../../Components/Title/Title";
 
 const PopularInstructors = () => {
   return (
     <div className="mb-36">
-      <h2 className="text-center font-bold text-4xl">Popular Instructors</h2>
-      <hr className="border mt-2 w-96 mx-auto" />
+    <Title title="Popular Instructors"></Title>
       {/* instructors card */}
       <InstructorsCard></InstructorsCard>
       {/* button */}

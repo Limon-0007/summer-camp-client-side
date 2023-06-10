@@ -3,8 +3,10 @@ import { FaBars } from "react-icons/fa";
 import { Link, Outlet } from "react-router-dom";
 
 const DashBoard = () => {
-  const admin = true;
-  const instructor = false;
+  const admin = false;
+  const instructor = true;
+  // TODO: need to make admin and instructors dynamic
+  
   return (
     <div>
       <div className="drawer lg:drawer-open">
@@ -25,10 +27,10 @@ const DashBoard = () => {
             {instructor ? (
               <>
                 <li>
-                  <Link>Add a Class</Link>
+                  <Link to="/dashboard/addAClass">Add a Class</Link>
                 </li>
                 <li>
-                  <Link>My Classes</Link>
+                  <Link to="/dashboard/myClasses">My Classes</Link>
                 </li>
               </>
             ) : admin ? (
@@ -48,7 +50,9 @@ const DashBoard = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/dashboard/enrolledClasses">My Enrolled Classes</Link>
+                  <Link to="/dashboard/enrolledClasses">
+                    My Enrolled Classes
+                  </Link>
                 </li>
                 <li>
                   <Link to="/dashboard/payments">My Payments</Link>
