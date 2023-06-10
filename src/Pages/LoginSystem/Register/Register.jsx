@@ -42,7 +42,7 @@ const Register = () => {
       password,
       confirmPassword,
       photoURL,
-      role: "student"
+      role: "student",
     };
 
     createUser(email, password)
@@ -65,19 +65,19 @@ const Register = () => {
         setError(error.message);
       });
 
-      // send data to server 
+    // send data to server
 
-      fetch("http://localhost:5000/users", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json"
-        },
-        body: JSON.stringify(newUser)
-      })
-      .then(res => res.json())
-      .then(data => {
+    fetch("https://summer-camp-server-side-murex.vercel.app/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newUser),
+    })
+      .then((res) => res.json())
+      .then((data) => {
         console.log(data);
-      })
+      });
   };
 
   const handleGoogleSignIn = () => {
@@ -168,7 +168,9 @@ const Register = () => {
               </div>
             </div>
             {/* error */}
-            <p className="text-red-600 "><small>{error}</small></p>
+            <p className="text-red-600 ">
+              <small>{error}</small>
+            </p>
             {/* photo URL */}
             <div className="form-control relative">
               <label className="label">

@@ -35,17 +35,20 @@ const router = createBrowserRouter([
       },
       {
         path: "instructors",
-        element: <Instructors></Instructors>
+        element: <Instructors></Instructors>,
       },
       {
         path: "instructors/:id",
         element: <InstructorDetails></InstructorDetails>,
-        loader: ({params}) => fetch(`http://localhost:5000/instructors/${params.id}`)
+        loader: ({ params }) =>
+          fetch(
+            `https://summer-camp-server-side-murex.vercel.app/instructors/${params.id}`
+          ),
       },
       {
         path: "classes",
-        element: <Classes></Classes>
-      }
+        element: <Classes></Classes>,
+      },
     ],
   },
   {
@@ -54,33 +57,33 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/dashboard/selectedClasses",
-        element: <SelectedClasses></SelectedClasses>
+        element: <SelectedClasses></SelectedClasses>,
       },
       {
         path: "/dashboard/enrolledClasses",
-        element: <EnrolledClasses></EnrolledClasses>
+        element: <EnrolledClasses></EnrolledClasses>,
       },
       {
         path: "/dashboard/payments",
-        element: <Payments></Payments>
+        element: <Payments></Payments>,
       },
       {
         path: "/dashboard/manageClasses",
-        element: <ManageClasses></ManageClasses>
+        element: <ManageClasses></ManageClasses>,
       },
       {
         path: "/dashboard/manageUsers",
-        element: <ManageUsers></ManageUsers>
+        element: <ManageUsers></ManageUsers>,
       },
       {
         path: "/dashboard/addAClass",
-        element: <AddAClass></AddAClass>
+        element: <AddAClass></AddAClass>,
       },
       {
         path: "/dashboard/myClasses",
-        element: <MyClasses></MyClasses>
-      }
-    ]
+        element: <MyClasses></MyClasses>,
+      },
+    ],
   },
   {
     path: "*",

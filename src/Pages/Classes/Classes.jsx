@@ -15,7 +15,7 @@ const Classes = () => {
   const instructor = false;
 
   useEffect(() => {
-    fetch("http://localhost:5000/classes")
+    fetch("https://summer-camp-server-side-murex.vercel.app/classes")
       .then((res) => res.json())
       .then((data) => setClasses(data));
   }, []);
@@ -39,7 +39,7 @@ const Classes = () => {
   };
   return (
     <div className="py-36 px-8">
-     <Title title="Our Classes"></Title>
+      <Title title="Our Classes"></Title>
       {classes.map((singleClass) => (
         <div
           key={singleClass._id}

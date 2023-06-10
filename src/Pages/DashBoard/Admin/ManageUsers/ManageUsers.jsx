@@ -4,15 +4,6 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 
 const ManageUsers = () => {
-  // const [users, setUsers] = useState([]);
-  // useEffect(() => {
-  //   fetch("http://localhost:5000/users")
-  //     .then((res) => res.json())
-  //     .then((data) => setUsers(data));
-  // }, []);
-
-  //   TODO: actions for buttons
-
   const {
     isLoading,
     isError,
@@ -22,7 +13,9 @@ const ManageUsers = () => {
   } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/users");
+      const res = await fetch(
+        "https://summer-camp-server-side-murex.vercel.app/users"
+      );
       return res.json();
     },
   });
@@ -37,9 +30,12 @@ const ManageUsers = () => {
 
   // make admin
   const handleMakeAdmin = (user) => {
-    fetch(`http://localhost:5000/users/admin/${user._id}`, {
-      method: "PATCH",
-    })
+    fetch(
+      `https://summer-camp-server-side-murex.vercel.app/users/admin/${user._id}`,
+      {
+        method: "PATCH",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
@@ -56,9 +52,12 @@ const ManageUsers = () => {
 
   // make instructor
   const handleMakeInstructor = (user) => {
-    fetch(`http://localhost:5000/users/instructor/${user._id}`, {
-      method: "PATCH",
-    })
+    fetch(
+      `https://summer-camp-server-side-murex.vercel.app/users/instructor/${user._id}`,
+      {
+        method: "PATCH",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
@@ -127,6 +126,7 @@ const ManageUsers = () => {
                   </button>
                   <button
                     onClick={() => handleMakeInstructor(user)}
+                    disabled={user?.role === "instructor"}
                     className="bg-slate-600 py-1 xl:py-2 px-2 text-white rounded duration-200 hover:bg-slate-900"
                   >
                     Make Instructor

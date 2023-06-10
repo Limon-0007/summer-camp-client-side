@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const ClassesCard = () => {
   const [classes, setClasses] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/classes")
+    fetch("https://summer-camp-server-side-murex.vercel.app/classes")
       .then((res) => res.json())
       .then((data) => {
         setClasses(data);
@@ -23,7 +23,10 @@ const ClassesCard = () => {
                 className="h-48 w-full rounded"
               />
               <div className="absolute top-0 left-0 w-full h-full opacity-0 hover:opacity-100 transition-opacity duration-500 flex flex-col justify-center items-center bg-black bg-opacity-50 text-white text-center">
-                <Link to="/classes" className="bg-white text-black py-2 px-4 rounded font-semibold">
+                <Link
+                  to="/classes"
+                  className="bg-white text-black py-2 px-4 rounded font-semibold"
+                >
                   Enroll Now
                 </Link>
               </div>
@@ -32,10 +35,12 @@ const ClassesCard = () => {
           <div className="card-body">
             <h2 className="card-title">{singleClass.class_name}</h2>
             <div>
-            <p className="font-semibold text-sm">
-              Number of Students: {singleClass.num_students}
-            </p>
-            <p className="font-semibold text-sm">Price: ${singleClass.price}</p>
+              <p className="font-semibold text-sm">
+                Number of Students: {singleClass.num_students}
+              </p>
+              <p className="font-semibold text-sm">
+                Price: ${singleClass.price}
+              </p>
             </div>
           </div>
         </div>
