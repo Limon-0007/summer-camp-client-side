@@ -3,8 +3,8 @@ import { FaBars } from "react-icons/fa";
 import { Link, Outlet } from "react-router-dom";
 
 const DashBoard = () => {
-  const admin = false;
-  const instructor = true;
+  const admin = true;
+  const instructor = false;
   // TODO: need to make admin and instructors dynamic
   
   return (
