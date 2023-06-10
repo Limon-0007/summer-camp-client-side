@@ -17,6 +17,8 @@ Technologies Used:
 * Express.js: A web application framework for Node.js
 * Tailwind CSS: A utility-first CSS framework for creating responsive and modern designs
 * Daisy UI: A plugin for Tailwind CSS that provides a collection of ready-to-use components
+* Tanstack Query: an amazing useful api for fetch
+* React Icons, Sweet Alert and so on...
 * Live Site: https://summer-camp-61730.web.app/
 
 Get started on your language learning journey with Language Learners today! Happy learning!
