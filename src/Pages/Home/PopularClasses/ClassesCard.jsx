@@ -23,7 +23,7 @@ const ClassesCard = () => {
                 className="h-48 w-full rounded"
               />
               <div className="absolute top-0 left-0 w-full h-full opacity-0 hover:opacity-100 transition-opacity duration-500 flex flex-col justify-center items-center bg-black bg-opacity-50 text-white text-center">
-                <Link to="/" className="bg-white text-black py-2 px-4 rounded font-semibold">
+                <Link to="/classes" className="bg-white text-black py-2 px-4 rounded font-semibold">
                   Enroll Now
                 </Link>
               </div>

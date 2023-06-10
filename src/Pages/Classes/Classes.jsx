@@ -9,6 +9,10 @@ const Classes = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  // TODO: make admin and instructor dynamic
+  const admin = false;
+  const instructor = false;
+
   useEffect(() => {
     fetch("http://localhost:5000/classes")
       .then((res) => res.json())
@@ -39,7 +43,9 @@ const Classes = () => {
       {classes.map((singleClass) => (
         <div
           key={singleClass._id}
-          className="card md:card-side bg-base-100 shadow-xl my-3"
+          className={`card md:card-side bg-base-100 shadow-xl my-3 ${
+            singleClass.available_seats === 0 && "bg-red-600"
+          }`}
         >
           <figure>
             <img
@@ -62,10 +68,12 @@ const Classes = () => {
               <p>Price: ${singleClass.price}</p>
               <div className="card-actions justify-end">
                 <button
-                  disabled={singleClass.available_seats === 0}
+                  disabled={
+                    singleClass.available_seats === 0 || admin || instructor
+                  }
                   onClick={handleEnroll}
                 >
-                  <Buttons title="Enroll Now"></Buttons>
+                  <Buttons title="Select"></Buttons>
                 </button>
               </div>
             </div>

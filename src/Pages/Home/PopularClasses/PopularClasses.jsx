@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import Buttons from "../../../Components/Buttons/Buttons";
 
 const PopularClasses = () => {
- 
-
   return (
     <div className="mt-36 mb-36">
       <h2 className="text-center font-bold text-4xl">Popular Classes</h2>
@@ -14,9 +12,9 @@ const PopularClasses = () => {
       <ClassesCard></ClassesCard>
       {/* button */}
       <div className="mt-14 text-center">
-      <Link to="/">
-        <Buttons title="Enroll Now"></Buttons>
-      </Link>
+        <Link to="/classes">
+          <Buttons title="Enroll Now"></Buttons>
+        </Link>
       </div>
     </div>
   );
