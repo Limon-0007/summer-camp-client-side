@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { FaBars } from "react-icons/fa";
 import { Link, Outlet } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProviders";
-
 const DashBoard = () => {
   const { user } = useContext(AuthContext);
   const [users, setUsers] = useState([]);

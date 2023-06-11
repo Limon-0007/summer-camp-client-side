@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 
 const ManageUsers = () => {
+  const token = localStorage.getItem("access-token");
   const {
     isLoading,
     isError,
@@ -14,7 +15,12 @@ const ManageUsers = () => {
     queryKey: ["users"],
     queryFn: async () => {
       const res = await fetch(
-        "https://summer-camp-server-side-murex.vercel.app/users"
+        "https://summer-camp-server-side-murex.vercel.app/users",
+        {
+          headers: {
+            authorization: `bearer ${token}`,
+          },
+        }
       );
       return res.json();
     },
@@ -95,7 +101,7 @@ const ManageUsers = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user, index) => (
+            {users?.map((user, index) => (
               <tr key={user._id}>
                 <th>
                   <label>{index + 1}</label>
@@ -104,10 +110,7 @@ const ManageUsers = () => {
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
                       <div className="mask mask-square w-12 h-12">
-                        <img
-                          src={user?.photoURL}
-                          alt="Image not found"
-                        />
+                        <img src={user?.photoURL} alt="Image not found" />
                       </div>
                     </div>
                   </div>
