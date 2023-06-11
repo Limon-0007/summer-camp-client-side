@@ -13,7 +13,7 @@ const ClassesCard = () => {
 
   return (
     <div className="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 px-6 mt-14">
-      {classes.map((singleClass) => (
+      {classes.slice(0, 6).map((singleClass) => (
         <div key={singleClass._id} className="card bg-base-100 shadow-xl">
           <div className="relative overflow-hidden">
             <div className="transition-transform duration-300 transform hover:scale-110 cursor-pointer">

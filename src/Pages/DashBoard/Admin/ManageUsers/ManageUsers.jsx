@@ -106,7 +106,7 @@ const ManageUsers = () => {
                       <div className="mask mask-square w-12 h-12">
                         <img
                           src={user?.photoURL}
-                          alt="Avatar Tailwind CSS Component"
+                          alt="Image not found"
                         />
                       </div>
                     </div>
