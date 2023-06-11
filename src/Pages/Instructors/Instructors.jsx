@@ -13,7 +13,9 @@ const Instructors = () => {
   }, []);
   return (
     <div className="py-36 px-8">
+      <div className="mb-10">
       <Title title="Our Instructors"></Title>
+      </div>
       {instructors.map((instructor) => (
         <div
           key={instructor._id}

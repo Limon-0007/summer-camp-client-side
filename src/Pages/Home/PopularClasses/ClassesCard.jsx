@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const ClassesCard = () => {
   const [classes, setClasses] = useState([]);
   useEffect(() => {
-    fetch("https://summer-camp-server-side-murex.vercel.app/classes")
+    fetch("https://summer-camp-server-side-murex.vercel.app/classes/approved")
       .then((res) => res.json())
       .then((data) => {
         setClasses(data);

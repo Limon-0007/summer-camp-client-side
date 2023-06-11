@@ -1,9 +1,12 @@
 import React from 'react';
+import Title from '../../../../Components/Title/Title';
 
 const EnrolledClasses = () => {
     return (
         <div>
-            <h2>My Enrolled Classes</h2>
+            <div className='mb-10'>
+                <Title title="My Enrolled Classes"></Title>
+            </div>
         </div>
     );
 };

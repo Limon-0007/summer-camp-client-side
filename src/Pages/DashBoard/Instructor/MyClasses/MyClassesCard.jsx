@@ -4,12 +4,17 @@ import { AuthContext } from '../../../../Providers/AuthProviders';
 const MyClassesCard = () => {
     const [classes, setClasses] = useState([]);
     const {user} = useContext(AuthContext)
+    const token = localStorage.getItem("access-token")
 
     useEffect(() => {
-      fetch(`https://summer-camp-server-side-murex.vercel.app/classes/${user?.email}`)
+      fetch(`https://summer-camp-server-side-murex.vercel.app/classes/${user?.email}`, {
+        headers: {
+          authorization: `bearer ${token}`
+        }
+      })
         .then((res) => res.json())
         .then((data) => setClasses(data));
-    }, [user]);
+    }, [user, token]);
     return (
         <div className="overflow-x-auto">
         <table className="table font-semibold text-xs">

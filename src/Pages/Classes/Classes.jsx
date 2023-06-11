@@ -1,26 +1,33 @@
 import React, { useContext, useEffect, useState } from "react";
-import Buttons from "../../Components/Buttons/Buttons";
 import { AuthContext } from "../../Providers/AuthProviders";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import Title from "../../Components/Title/Title";
+import axios from "axios";
 
 const Classes = () => {
   const [classes, setClasses] = useState([]);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const token = localStorage.getItem("access-token");
 
-  // TODO: make admin and instructor dynamic
-  const admin = false;
-  const instructor = false;
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    fetch(
+      `https://summer-camp-server-side-murex.vercel.app/users/${user?.email}`
+    )
+      .then((res) => res.json())
+      .then((data) => setUsers(data));
+  }, [user]);
 
   useEffect(() => {
-    fetch("https://summer-camp-server-side-murex.vercel.app/classes")
+    fetch("https://summer-camp-server-side-murex.vercel.app/classes/approved")
       .then((res) => res.json())
       .then((data) => setClasses(data));
   }, []);
 
-  const handleEnroll = () => {
+  // enroll
+  const handleEnroll = (singleClass) => {
     if (!user) {
       Swal.fire({
         title: "Please Login!",
@@ -32,10 +39,54 @@ const Classes = () => {
         confirmButtonText: "Log In",
       }).then((result) => {
         if (result.isConfirmed) {
-          navigate("/login");
+          navigate("/login", { replace: true });
         }
       });
     }
+
+    // fetch(
+    //   `https://summer-camp-server-side-murex.vercel.app/carts/${user?.email}`,
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       "content-type": "application/json",
+    //     },
+    //     body: JSON.stringify(singleClass),
+    //   }
+    // ).then((res) => {
+    //     console.log(res.data);
+    //     if (res.data.insertedId) {
+    //       Swal.fire({
+    //         icon: "success",
+    //         title: "Added to cart successfully!",
+    //         showConfirmButton: false,
+    //         timer: 1200,
+    //       });
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.log(error.message);
+    //   });
+
+    // post api
+    axios
+      .post(
+        `https://summer-camp-server-side-murex.vercel.app/carts?email=${user?.email}`,
+        singleClass
+      )
+      .then((res) => {
+        if(res.data.insertedId){
+          Swal.fire({
+            icon: 'success',
+            title: 'Added to cart successfully!',
+            showConfirmButton: false,
+            timer: 1200
+          })
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
   return (
     <div className="py-36 px-8">
@@ -69,11 +120,14 @@ const Classes = () => {
               <div className="card-actions justify-end">
                 <button
                   disabled={
-                    singleClass.available_seats === 0 || admin || instructor
+                    singleClass.available_seats === 0 ||
+                    users[0]?.role === "admin" ||
+                    users[0]?.role === "instructor"
                   }
-                  onClick={handleEnroll}
+                  onClick={() => handleEnroll(singleClass)}
+                  className="bg-slate-600 py-2 px-4 text-white rounded duration-200 hover:bg-slate-900"
                 >
-                  <Buttons title="Select"></Buttons>
+                  Select
                 </button>
               </div>
             </div>

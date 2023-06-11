@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { FaBars } from "react-icons/fa";
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProviders";
 const DashBoard = () => {
   const { user } = useContext(AuthContext);
   const [users, setUsers] = useState([]);
   useEffect(() => {
-    fetch(`https://summer-camp-server-side-murex.vercel.app/users/${user?.email}`)
+    fetch(
+      `https://summer-camp-server-side-murex.vercel.app/users/${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => setUsers(data));
   }, [user]);
@@ -31,47 +33,113 @@ const DashBoard = () => {
             {users[0]?.role === "instructor" ? (
               <>
                 <li>
-                  <Link to="/dashboard/addAClass">Add a Class</Link>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "bg-slate-900 text-white" : "inactive"
+                    }
+                    to="/dashboard/addAClass"
+                  >
+                    Add a Class
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to="/dashboard/myClasses">My Classes</Link>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "bg-slate-900 text-white" : "inactive"
+                    }
+                    to="/dashboard/myClasses"
+                  >
+                    My Classes
+                  </NavLink>
                 </li>
               </>
             ) : users[0]?.role === "admin" ? (
               <>
                 <li>
-                  <Link to="/dashboard/manageClasses">Manage Classes</Link>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "bg-slate-900 text-white" : "inactive"
+                    }
+                    to="/dashboard/manageClasses"
+                  >
+                    Manage Classes
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to="/dashboard/manageUsers">Manage Users</Link>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "bg-slate-900 text-white" : "inactive"
+                    }
+                    to="/dashboard/manageUsers"
+                  >
+                    Manage Users
+                  </NavLink>
                 </li>
               </>
             ) : (
               <>
                 <li>
-                  <Link to="/dashboard/selectedClasses">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "bg-slate-900 text-white" : "inactive"
+                    }
+                    to="/dashboard/selectedClasses"
+                  >
                     My Selected Classes
-                  </Link>
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to="/dashboard/enrolledClasses">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "bg-slate-900 text-white" : "inactive"
+                    }
+                    to="/dashboard/enrolledClasses"
+                  >
                     My Enrolled Classes
-                  </Link>
+                  </NavLink>
                 </li>
                 <li>
-                  <Link to="/dashboard/payments">My Payments</Link>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "bg-slate-900 text-white" : "inactive"
+                    }
+                    to="/dashboard/payments"
+                  >
+                    My Payments
+                  </NavLink>
                 </li>
               </>
             )}
             <div className="divider"></div>
             <li>
-              <Link to="/">Home</Link>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? "bg-slate-900 text-white" : "inactive"
+                }
+                to="/"
+              >
+                Home
+              </NavLink>
             </li>
             <li>
-              <Link to="/classes">Classes</Link>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? "bg-slate-900 text-white" : "inactive"
+                }
+                to="/classes"
+              >
+                Classes
+              </NavLink>
             </li>
             <li>
-              <Link to="/instructors">Instructors</Link>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? "bg-slate-900 text-white" : "inactive"
+                }
+                to="/instructors"
+              >
+                Instructors
+              </NavLink>
             </li>
           </ul>
         </div>

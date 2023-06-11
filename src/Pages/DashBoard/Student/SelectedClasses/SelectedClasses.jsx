@@ -1,9 +1,12 @@
 import React from 'react';
+import Title from '../../../../Components/Title/Title';
 
 const SelectedClasses = () => {
     return (
         <div>
-            <h2>This is my selected Classes</h2>
+            <div className='mb-10'>
+            <Title title="My Selected Classes"></Title>
+            </div>
         </div>
     );
 };

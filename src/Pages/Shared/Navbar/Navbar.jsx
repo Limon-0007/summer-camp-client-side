@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProviders";
 import Swal from "sweetalert2";
 
@@ -17,22 +17,65 @@ const Navbar = () => {
   const navItems = (
     <>
       <li>
-        <Link to="/">Home</Link>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "bg-slate-900 text-white" : "inactive"
+          }
+          to="/"
+        >
+          Home
+        </NavLink>
       </li>
       <li>
-        <Link to="/instructors">Instructors</Link>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "bg-slate-900 text-white" : "inactive"
+          }
+          to="/instructors"
+        >
+          Instructors
+        </NavLink>
       </li>
       <li>
-        <Link to="/classes">Classes</Link>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "bg-slate-900 text-white" : "inactive"
+          }
+          to="/classes"
+        >
+          Classes
+        </NavLink>
       </li>
       {user && (
         <li>
           {users[0]?.role === "admin" ? (
-            <Link to="/dashboard/manageClasses">Dashboard</Link>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "bg-slate-900 text-white" : "inactive"
+              }
+              to="/dashboard/manageClasses"
+            >
+              Dashboard
+            </NavLink>
           ) : users[0]?.role === "instructor" ? (
-            <Link to="/dashboard/addAClass">Dashboard</Link>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "bg-slate-900 text-white" : "inactive"
+              }
+              to="/dashboard/addAClass"
+            >
+              Dashboard
+            </NavLink>
           ) : (
-            <Link to="/dashboard/selectedClasses">Dashboard</Link>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "bg-slate-900 text-white" : "inactive"
+              }
+              to="/dashboard/selectedClasses"
+            >
+              Dashboard
+              <div className="badge badge-secondary">+0</div>
+            </NavLink>
           )}
         </li>
       )}

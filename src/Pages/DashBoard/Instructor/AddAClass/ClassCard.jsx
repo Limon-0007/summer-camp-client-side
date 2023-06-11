@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 
 const ClassCard = () => {
   const { user } = useContext(AuthContext);
+  const token = localStorage.getItem("access-token");
 
   const handleAddClass = (event) => {
     event.preventDefault();
@@ -33,7 +34,12 @@ const ClassCard = () => {
     axios
       .post(
         "https://summer-camp-server-side-murex.vercel.app/classes",
-        newClass
+        newClass,
+        {
+          headers: {
+            authorization: `bearer ${token}`,
+          },
+        }
       )
       .then((response) => {
         if (response.data.insertedId) {
