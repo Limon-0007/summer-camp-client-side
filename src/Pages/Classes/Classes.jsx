@@ -10,7 +10,7 @@ const Classes = () => {
   const [classes, setClasses] = useState([]);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [, refetch] = useCart()
+  const [, refetch] = useCart();
   const [users, setUsers] = useState([]);
   useEffect(() => {
     fetch(
@@ -31,7 +31,6 @@ const Classes = () => {
     const {
       available_seats,
       class_name,
-      email,
       image,
       instructor_name,
       num_students,
@@ -71,7 +70,7 @@ const Classes = () => {
         .post(`https://summer-camp-server-side-iota.vercel.app/carts`, newItem)
         .then((res) => {
           if (res.data.insertedId) {
-            refetch()
+            refetch();
             Swal.fire({
               icon: "success",
               title: "Added to cart successfully!",
