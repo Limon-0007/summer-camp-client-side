@@ -123,7 +123,7 @@ const ManageClasses = () => {
                   <button
                     onClick={() => handleApproved(singleClass)}
                     disabled={singleClass?.status === "approved"}
-                    className="bg-slate-600 p-2 text-white rounded duration-200 hover:bg-slate-900"
+                    className="bg-slate-600 p-2 text-white rounded duration-200 hover:bg-slate-900 disabled:bg-slate-400"
                   >
                     Approve
                   </button>
@@ -131,7 +131,7 @@ const ManageClasses = () => {
                   <button
                     onClick={() => handleDeclined(singleClass)}
                     disabled={singleClass?.status === "approved"}
-                    className="bg-slate-600 p-2 text-white rounded duration-200 hover:bg-slate-900"
+                    className="bg-slate-600 p-2 text-white rounded duration-200 hover:bg-slate-900 disabled:bg-slate-400"
                   >
                     Decline
                   </button>
