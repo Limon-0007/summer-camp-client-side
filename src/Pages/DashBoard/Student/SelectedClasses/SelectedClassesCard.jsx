@@ -58,7 +58,7 @@ const SelectedClassesCard = () => {
                 <label>#</label>
               </th>
               <th></th>
-              <th>Name</th>
+              <th>Instructor</th>
               <th>Class Name</th>
               <th>Price</th>
               <th>Action</th>
