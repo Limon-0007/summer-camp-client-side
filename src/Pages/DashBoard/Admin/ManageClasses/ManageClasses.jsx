@@ -93,7 +93,7 @@ const ManageClasses = () => {
                 <label>#</label>
               </th>
               <th></th>
-              <th>Name</th>
+              <th>Instructor</th>
               <th>Class Name</th>
               <th>Status</th>
               <th></th>
@@ -122,7 +122,7 @@ const ManageClasses = () => {
                 <td className="flex items-center gap-2">
                   <button
                     onClick={() => handleApproved(singleClass)}
-                    disabled={singleClass?.status === "approved"}
+                    disabled={singleClass?.status === "approved" || singleClass?.status === "declined"}
                     className="bg-slate-600 p-2 text-white rounded duration-200 hover:bg-slate-900 disabled:bg-slate-400"
                   >
                     Approve
@@ -130,7 +130,7 @@ const ManageClasses = () => {
                   {/* declined */}
                   <button
                     onClick={() => handleDeclined(singleClass)}
-                    disabled={singleClass?.status === "approved"}
+                    disabled={singleClass?.status === "approved" || singleClass?.status === "declined"}
                     className="bg-slate-600 p-2 text-white rounded duration-200 hover:bg-slate-900 disabled:bg-slate-400"
                   >
                     Decline

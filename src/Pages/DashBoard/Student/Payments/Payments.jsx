@@ -2,6 +2,7 @@ import React from 'react';
 import Title from '../../../../Components/Title/Title';
 
 const Payments = () => {
+    // TODO: Need to add payment method
     return (
         <div>
             <div className='mb-10'>
