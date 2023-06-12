@@ -42,7 +42,7 @@ const router = createBrowserRouter([
         element: <InstructorDetails></InstructorDetails>,
         loader: ({ params }) =>
           fetch(
-            `https://summer-camp-server-side-murex.vercel.app/instructors/${params.id}`
+            `https://summer-camp-server-side-iota.vercel.app/instructors/${params.id}`
           ),
       },
       {

@@ -15,7 +15,7 @@ const ManageUsers = () => {
     queryKey: ["users"],
     queryFn: async () => {
       const res = await fetch(
-        "https://summer-camp-server-side-murex.vercel.app/users",
+        "https://summer-camp-server-side-iota.vercel.app/users",
         {
           headers: {
             authorization: `bearer ${token}`,
@@ -37,7 +37,7 @@ const ManageUsers = () => {
   // make admin
   const handleMakeAdmin = (user) => {
     fetch(
-      `https://summer-camp-server-side-murex.vercel.app/users/admin/${user._id}`,
+      `https://summer-camp-server-side-iota.vercel.app/users/admin/${user._id}`,
       {
         method: "PATCH",
       }
@@ -59,7 +59,7 @@ const ManageUsers = () => {
   // make instructor
   const handleMakeInstructor = (user) => {
     fetch(
-      `https://summer-camp-server-side-murex.vercel.app/users/instructor/${user._id}`,
+      `https://summer-camp-server-side-iota.vercel.app/users/instructor/${user._id}`,
       {
         method: "PATCH",
       }
@@ -123,14 +123,14 @@ const ManageUsers = () => {
                   <button
                     onClick={() => handleMakeAdmin(user)}
                     disabled={user?.role === "admin"}
-                    className="bg-slate-600 py-1 xl:py-2 px-2 text-white rounded duration-200 hover:bg-slate-900"
+                    className="bg-slate-600 py-1 xl:py-2 px-2 text-white rounded duration-200 hover:bg-slate-900 disabled:bg-slate-400"
                   >
                     Make Admin
                   </button>
                   <button
                     onClick={() => handleMakeInstructor(user)}
                     disabled={user?.role === "instructor"}
-                    className="bg-slate-600 py-1 xl:py-2 px-2 text-white rounded duration-200 hover:bg-slate-900"
+                    className="bg-slate-600 py-1 xl:py-2 px-2 text-white rounded duration-200 hover:bg-slate-900 disabled:bg-slate-400"
                   >
                     Make Instructor
                   </button>

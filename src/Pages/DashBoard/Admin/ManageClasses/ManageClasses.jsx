@@ -15,7 +15,7 @@ const ManageClasses = () => {
     queryKey: ["classes"],
     queryFn: async () => {
       const res = await fetch(
-        "https://summer-camp-server-side-murex.vercel.app/classes",
+        "https://summer-camp-server-side-iota.vercel.app/classes",
         {
           headers: {
             authorization: `bearer ${token}`,
@@ -33,10 +33,11 @@ const ManageClasses = () => {
   if (isError) {
     return <span>Error: {error.message}</span>;
   }
+
   //   approve
   const handleApproved = (singleClass) => {
     fetch(
-      `https://summer-camp-server-side-murex.vercel.app/classes/approved/${singleClass._id}`,
+      `https://summer-camp-server-side-iota.vercel.app/classes/approved/${singleClass._id}`,
       {
         method: "PATCH",
       }
@@ -58,7 +59,7 @@ const ManageClasses = () => {
   //   declined
   const handleDeclined = (singleClass) => {
     fetch(
-      `https://summer-camp-server-side-murex.vercel.app/classes/declined/${singleClass._id}`,
+      `https://summer-camp-server-side-iota.vercel.app/classes/declined/${singleClass._id}`,
       {
         method: "PATCH",
       }

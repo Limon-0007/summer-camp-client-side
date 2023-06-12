@@ -2,13 +2,16 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProviders";
 import Swal from "sweetalert2";
+import useCart from "../../../Hooks/useCart/useCart";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [users, setUsers] = useState([]);
+  const [cart] = useCart();
+
   useEffect(() => {
     fetch(
-      `https://summer-camp-server-side-murex.vercel.app/users/${user?.email}`
+      `https://summer-camp-server-side-iota.vercel.app/users/${user?.email}`
     )
       .then((res) => res.json())
       .then((data) => setUsers(data));
@@ -74,7 +77,7 @@ const Navbar = () => {
               to="/dashboard/selectedClasses"
             >
               Dashboard
-              <div className="badge badge-secondary">+0</div>
+              <div className="badge badge-secondary">+{cart?.length || 0}</div>
             </NavLink>
           )}
         </li>

@@ -7,14 +7,14 @@ const Instructors = () => {
   const [instructors, setInstructors] = useState([]);
 
   useEffect(() => {
-    fetch("https://summer-camp-server-side-murex.vercel.app/instructors")
+    fetch("https://summer-camp-server-side-iota.vercel.app/instructors")
       .then((res) => res.json())
       .then((data) => setInstructors(data));
   }, []);
   return (
     <div className="py-36 px-8">
       <div className="mb-10">
-      <Title title="Our Instructors"></Title>
+        <Title title="Our Instructors"></Title>
       </div>
       {instructors.map((instructor) => (
         <div

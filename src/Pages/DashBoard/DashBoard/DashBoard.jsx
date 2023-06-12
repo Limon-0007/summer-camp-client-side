@@ -7,7 +7,7 @@ const DashBoard = () => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
     fetch(
-      `https://summer-camp-server-side-murex.vercel.app/users/${user?.email}`
+      `https://summer-camp-server-side-iota.vercel.app/users/${user?.email}`
     )
       .then((res) => res.json())
       .then((data) => setUsers(data));

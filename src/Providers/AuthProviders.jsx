@@ -54,7 +54,7 @@ const AuthProviders = ({ children }) => {
 
       if (currentUser) {
         axios
-          .post("https://summer-camp-server-side-murex.vercel.app/jwt", {
+          .post("https://summer-camp-server-side-iota.vercel.app/jwt", {
             email: currentUser?.email,
           })
           .then((data) => {

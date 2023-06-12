@@ -12,6 +12,8 @@
   "dependencies": {
     "@tanstack/react-query": "^4.29.12",
     "axios": "^1.4.0",
+    "cors": "^2.8.5",
+    "cors-anywhere": "^0.4.4",
     "firebase": "^9.22.1",
     "localforage": "^1.10.0",
     "lottie-web": "^5.12.0",

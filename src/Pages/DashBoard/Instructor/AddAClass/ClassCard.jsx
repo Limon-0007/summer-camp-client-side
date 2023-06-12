@@ -33,7 +33,7 @@ const ClassCard = () => {
 
     axios
       .post(
-        "https://summer-camp-server-side-murex.vercel.app/classes",
+        "https://summer-camp-server-side-iota.vercel.app/classes",
         newClass,
         {
           headers: {

@@ -67,7 +67,7 @@ const Register = () => {
 
     // send data to server
 
-    fetch("https://summer-camp-server-side-murex.vercel.app/users", {
+    fetch("https://summer-camp-server-side-iota.vercel.app/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -4,30 +4,42 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import Title from "../../Components/Title/Title";
 import axios from "axios";
+import useCart from "../../Hooks/useCart/useCart";
 
 const Classes = () => {
   const [classes, setClasses] = useState([]);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-  const token = localStorage.getItem("access-token");
-
+  const [, refetch] = useCart()
   const [users, setUsers] = useState([]);
   useEffect(() => {
     fetch(
-      `https://summer-camp-server-side-murex.vercel.app/users/${user?.email}`
+      `https://summer-camp-server-side-iota.vercel.app/users/${user?.email}`
     )
       .then((res) => res.json())
       .then((data) => setUsers(data));
   }, [user]);
 
   useEffect(() => {
-    fetch("https://summer-camp-server-side-murex.vercel.app/classes/approved")
+    fetch("https://summer-camp-server-side-iota.vercel.app/classes/approved")
       .then((res) => res.json())
       .then((data) => setClasses(data));
   }, []);
 
   // enroll
   const handleEnroll = (singleClass) => {
+    const {
+      available_seats,
+      class_name,
+      email,
+      image,
+      instructor_name,
+      num_students,
+      price,
+      status,
+      _id,
+    } = singleClass;
+
     if (!user) {
       Swal.fire({
         title: "Please Login!",
@@ -42,52 +54,38 @@ const Classes = () => {
           navigate("/login", { replace: true });
         }
       });
+    } else {
+      const newItem = {
+        available_seats,
+        class_name,
+        email: user?.email,
+        image,
+        instructor_name,
+        num_students,
+        price,
+        status,
+        menuId: _id,
+      };
+      // post api
+      axios
+        .post(`https://summer-camp-server-side-iota.vercel.app/carts`, newItem)
+        .then((res) => {
+          if (res.data.insertedId) {
+            refetch()
+            Swal.fire({
+              icon: "success",
+              title: "Added to cart successfully!",
+              showConfirmButton: false,
+              timer: 1200,
+            });
+          }
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
     }
-
-    // fetch(
-    //   `https://summer-camp-server-side-murex.vercel.app/carts/${user?.email}`,
-    //   {
-    //     method: "POST",
-    //     headers: {
-    //       "content-type": "application/json",
-    //     },
-    //     body: JSON.stringify(singleClass),
-    //   }
-    // ).then((res) => {
-    //     console.log(res.data);
-    //     if (res.data.insertedId) {
-    //       Swal.fire({
-    //         icon: "success",
-    //         title: "Added to cart successfully!",
-    //         showConfirmButton: false,
-    //         timer: 1200,
-    //       });
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.log(error.message);
-    //   });
-
-    // post api
-    axios
-      .post(
-        `https://summer-camp-server-side-murex.vercel.app/carts?email=${user?.email}`,
-        singleClass
-      )
-      .then((res) => {
-        if(res.data.insertedId){
-          Swal.fire({
-            icon: 'success',
-            title: 'Added to cart successfully!',
-            showConfirmButton: false,
-            timer: 1200
-          })
-        }
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
   };
+
   return (
     <div className="py-36 px-8">
       <Title title="Our Classes"></Title>
